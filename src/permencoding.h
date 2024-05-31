@@ -54,7 +54,7 @@ class PermEncoding {
   }
 
   inline uint16_t encode(const uint8_t lowbits[4]) const {
-    if (DEBUG_ENCODE & debug_level) {
+    if (DEBUG_ENCODE & cuckoofilter_debug_level) {
       printf("Perm.encode\n");
       for (int i = 0; i < 4; i++) {
         printf("encode lowbits[%d]=%x\n", i, lowbits[i]);
@@ -75,7 +75,7 @@ class PermEncoding {
       } else {
         dec_table[idx] = pack(dst);
         enc_table[pack(dst)] = idx;
-        if (DEBUG_ENCODE & debug_level) {
+        if (DEBUG_ENCODE & cuckoofilter_debug_level) {
           printf("enc_table[%04x]=%04x\t%x %x %x %x\n", pack(dst), idx, dst[0],
                  dst[1], dst[2], dst[3]);
         }

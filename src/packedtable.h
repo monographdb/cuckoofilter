@@ -200,7 +200,7 @@ class PackedTable {
     tags[2] |= lowbits[2];
     tags[3] |= lowbits[3];
 
-    if (debug_level & DEBUG_TABLE) {
+    if (cuckoofilter_debug_level & DEBUG_TABLE) {
       PrintTags(tags);
     }
     DPRINTF(DEBUG_TABLE, "PackedTable::ReadBucket done \n");
@@ -216,7 +216,7 @@ class PackedTable {
       DPRINTF(DEBUG_TABLE, "Sort tags\n");
       SortTags(tags);
     }
-    if (debug_level & DEBUG_TABLE) {
+    if (cuckoofilter_debug_level & DEBUG_TABLE) {
       PrintTags(tags);
     }
 
@@ -354,7 +354,7 @@ class PackedTable {
     DPRINTF(DEBUG_TABLE, "PackedTable::FindTagInBucket %zu\n", i);
     uint32_t tags[4];
     ReadBucket(i, tags);
-    if (debug_level & DEBUG_TABLE) {
+    if (cuckoofilter_debug_level & DEBUG_TABLE) {
       PrintTags(tags);
     }
 
@@ -367,7 +367,7 @@ class PackedTable {
   bool DeleteTagFromBucket(const size_t i, const uint32_t tag) {
     uint32_t tags[4];
     ReadBucket(i, tags);
-    if (debug_level & DEBUG_TABLE) {
+    if (cuckoofilter_debug_level & DEBUG_TABLE) {
       PrintTags(tags);
     }
     for (size_t j = 0; j < 4; j++) {
@@ -388,7 +388,7 @@ class PackedTable {
     DPRINTF(DEBUG_TABLE,
             "PackedTable::InsertTagToBucket read bucket to tags\n");
     ReadBucket(i, tags);
-    if (debug_level & DEBUG_TABLE) {
+    if (cuckoofilter_debug_level & DEBUG_TABLE) {
       PrintTags(tags);
       PrintBucket(i);
     }
@@ -399,7 +399,7 @@ class PackedTable {
 
         tags[j] = tag;
         WriteBucket(i, tags);
-        if (debug_level & DEBUG_TABLE) {
+        if (cuckoofilter_debug_level & DEBUG_TABLE) {
           PrintBucket(i);
           ReadBucket(i, tags);
         }
@@ -418,7 +418,7 @@ class PackedTable {
       oldtag = tags[r];
       tags[r] = tag;
       WriteBucket(i, tags);
-      if (debug_level & DEBUG_TABLE) {
+      if (cuckoofilter_debug_level & DEBUG_TABLE) {
         PrintTags(tags);
       }
     }

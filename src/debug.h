@@ -9,7 +9,7 @@ namespace cuckoofilter {
 //#define DEBUG
 #endif
 
-#define debug_level (DEBUG_ERRS | DEBUG_CUCKOO)
+#define cuckoofilter_debug_level (DEBUG_ERRS | DEBUG_CUCKOO)
 
 #ifdef DEBUG
 // extern unsigned int debug;
@@ -18,13 +18,13 @@ namespace cuckoofilter {
  * a combination of DEBUG_ERRS, DEBUG_CUCKOO, DEBUG_TABLE, DEBUG_ENCODE
  */
 
-#define DPRINTF(level, ...)                                    \
-  do {                                                         \
-    if (debug_level & (level)) fprintf(stdout, ##__VA_ARGS__); \
+#define DPRINTF(level, ...)                                                 \
+  do {                                                                      \
+    if (cuckoofilter_debug_level & (level)) fprintf(stdout, ##__VA_ARGS__); \
   } while (0)
-#define DEBUG_PERROR(errmsg)                      \
-  do {                                            \
-    if (debug_level & DEBUG_ERRS) perror(errmsg); \
+#define DEBUG_PERROR(errmsg)                                   \
+  do {                                                         \
+    if (cuckoofilter_debug_level & DEBUG_ERRS) perror(errmsg); \
   } while (0)
 
 #else
